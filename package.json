@@ -10,6 +10,7 @@
     "influxdb-nodejs": "^2.7.5",
     "lodash": "^4.17.4",
     "on-headers": "^1.0.1",
+    "os": "^0.1.1",
     "path": "^0.12.7"
   },
   "devDependencies": {},
