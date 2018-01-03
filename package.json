@@ -1,12 +1,12 @@
 {
-  "name": "influxdata-sample",
+  "name": "rickshaw-sample",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "influx": "^5.0.0-alpha.4",
+    "influx": "^5.0.7",
     "influxdb-nodejs": "^2.7.5",
     "lodash": "^4.17.4",
     "on-headers": "^1.0.1",
