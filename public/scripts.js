@@ -1,6 +1,6 @@
 // const loadData = () => {
-//   fetch('/api/v1/usage')
-//     .then( response => {
+//   fetch('/api/v1/load_times')
+//     .then(response => {
 //       if (response.status !== 200) {
 //         console.log(response);
 //       }
@@ -8,35 +8,73 @@
 //     })
 //     .then(response => response.json())
 //     .then(parsedResponse => {
-//       const unpackData = (arr, key) => {
-//         return arr.map(obj => obj[key])
-//       }
-//       const firstTrace = {
-//         type: 'scatter',
-//         mode: 'lines',
-//         name: 'Mean User Usage',
-//         x: unpackData(parsedResponse, 'time'),
-//         y: unpackData(parsedResponse, 'mean_usage_user'),
-//         line: {color: '#17BECF'}
-//       }
-//       const secondTrace = {
-//         type: "scatter",
-//         mode: "lines",
-//         name: 'Mean System Usage',
-//         x: unpackData(parsedResponse, 'time'),
-//         y: unpackData(parsedResponse, 'mean_usage_system'),
-//         line: {color: '#7F7F7F'}
-//       }
-//       const data = [firstTrace, secondTrace];
-//       const layout = {
-//         title: 'Local CPU Usage',
+//       const unpackData = (array, key) => {
+//         return array.map(obj => Object.assign({}, { x: Date.parse(obj['time']), y: obj[key] }))
 //       };
-//       return Plotly.newPlot('graphs-container', data, layout);
+//
+//       const palette = new Rickshaw.Color.Palette({ scheme: 'colorwheel' });
+//       const graph = new Rickshaw.Graph({
+//         element: document.querySelector('#chart'),
+//         width: 1200,
+//         height: 640,
+//         renderer: 'line',
+//         series: [
+//           {
+//             name: 'System load1',
+//             data: unpackData(parsedResponse, 'mean_load1'),
+//             color: palette.color()
+//           },
+//           {
+//             name: 'System load5',
+//             data: unpackData(parsedResponse, 'mean_load5'),
+//             color: palette.color()
+//           },
+//           {
+//             name: 'System load15',
+//             data: unpackData(parsedResponse, 'mean_load15'),
+//             color: palette.color()
+//           }
+//         ]
+//       });
+//
+//       const xAxis = new Rickshaw.Graph.Axis.Time({
+//         graph: graph,
+//         ticksTreatment: 'glow',
+//         timeFixture: new Rickshaw.Fixtures.Time.Local()
+//       });
+//
+//       const yAxis = new Rickshaw.Graph.Axis.Y({
+//         element: document.getElementById('y-axis'),
+//         graph: graph,
+//         orientation: 'left',
+//         tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+//       });
+//
+//       const legend = new Rickshaw.Graph.Legend( {
+//         element: document.getElementById('legend'),
+//         graph: graph
+//       });
+//
+//       const offsetForm = document.getElementById('offset-form');
+//       offsetForm.addEventListener('change', (e) => {
+//         const offsetMode = e.target.value;
+//
+//         if (offsetMode == 'lines') {
+//                 graph.setRenderer('line');
+//                 graph.offset = 'zero';
+//         } else {
+//                 graph.setRenderer('stack');
+//                 graph.offset = offsetMode;
+//         }
+//         graph.render();
+//       }, false);
+//
+//       return graph.render();
 //     })
 //     .catch( error => console.log(error) );
 // }
 
-// $(window).on('load', loadData);
+// document.addEventListener('DOMContentLoaded', loadData);
 
 var seriesData = [ [], [], [] ];
 var random = new Rickshaw.Fixtures.RandomData(150);
