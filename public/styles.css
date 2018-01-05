@@ -11,7 +11,7 @@ body {
   height: 100%;
   background: #f8f8f8;
   color: #666;
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 header {
@@ -35,6 +35,39 @@ main {
   align-items: center;
 }
 
-.graphs-title {
+.side-panel {
+  padding: 0 20px 20px 0;
+  width: 240px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.graph-title {
   margin: 30px auto;
+  font-size: 20px;
+}
+
+.side-panel section {
+  padding: 15px 0;
+  border: none;
+  border-top: 1px solid #eaeaea;
+  color: #505050;
+  font-size: 12px;
+}
+
+#legend {
+  height: 123px;
+  display: inline-block;
+  position: relative;
+  background-color: #fff;
+  margin-left: 0;
+  padding: 0;
+  left: 0;
+}
+
+.rickshaw-legend {
+  font-size: 12px;
+  color: #fff;
+  background: #404040;
+  border-radius: 2px;
 }
